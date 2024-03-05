@@ -1,2 +1,17 @@
-<p>dashboard works!</p>
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <button mat-raised-button style="margin-top: 20px;" class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button mat-icon-button (click)="drawer.toggle()" (click)="rotate()">
+        <mat-icon [@rotatedState]='state' class="icono-flecha" fontIcon="chevron_right"></mat-icon>
+      </button>
+    </div>
+  
+</mat-drawer-container>
 <router-outlet/>
