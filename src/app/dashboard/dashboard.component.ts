@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +16,30 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
-export class DashboardComponent {
-  state: string = 'default';
-    rotate() {
-        this.state = (this.state === 'default' ? 'rotated' : 'default');
+export class DashboardComponent implements OnInit{
+  state: string = 'rotated';
+
+  constructor(private router: Router, private authService: AuthService){
+  }
+
+  ngOnInit(): void {
+    if(!this.authService.isLoggedIn()){
+      this.router.navigate(['/']);
     }
+  }
+
+  get usuario() {
+    return this.authService.usuario;
+  }
+
+  rotate() {
+      this.state = (this.state === 'default' ? 'rotated' : 'default');
+  }
+
+  logout(){
+    this.authService.logout();
+    window.location.reload();
+  }
+
+    
 }

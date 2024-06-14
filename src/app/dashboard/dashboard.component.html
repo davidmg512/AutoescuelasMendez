@@ -1,17 +1,38 @@
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-        <button mat-raised-button style="margin-top: 20px;" class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-    </mat-drawer>
-  
-    <div class="example-sidenav-content">
-      <button mat-icon-button (click)="drawer.toggle()" (click)="rotate()">
-        <mat-icon [@rotatedState]='state' class="icono-flecha" fontIcon="chevron_right"></mat-icon>
+<mat-sidenav-container class="sidenav-content">
+  <mat-sidenav 
+      #drawer 
+      class="sidenav" 
+      fixedInViewport="true" 
+      mode="push"   
+      >
+    <mat-toolbar color="primary">
+      <mat-icon>account_circle</mat-icon>Hola, {{usuario.nombre}}
+      <button class="toggle-button ml-auto" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>close</mat-icon>
       </button>
+    </mat-toolbar>
+    <mat-nav-list>
+      <button mat-raised-button style="margin-top: 20px;" class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content-container">
+    <mat-toolbar color="primary">
+      <button class="toggle-button" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <a routerLink="/dashboard/main" style="margin-left:10px; text-decoration: none;">Autoescuela Méndez</a>
+      
+      <a class="ml-auto nav-link botonesNav text-white hover-underline-animation" data-underline-color="white" (click)="logout();">
+        <mat-icon class="large-icon" style="scale: 1.2;">logout</mat-icon>
+      </a>
+    </mat-toolbar>
+    <div class="router-outlet-container">
+      <router-outlet></router-outlet>
     </div>
-  
-</mat-drawer-container>
-<router-outlet/>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

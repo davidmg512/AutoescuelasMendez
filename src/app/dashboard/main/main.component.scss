@@ -1,0 +1,24 @@
+.imagen{
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.imagen-container{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Ajusta la altura del contenedor */
+}
+
+.presentacionContainer{
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100%; /* Ajusta la altura del contenedor */
+    flex-direction: column;
+}
+
+.titulo{
+    font-weight: bold;
+    font-size: 35px;
+}

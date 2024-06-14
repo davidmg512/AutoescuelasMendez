@@ -1,0 +1,28 @@
+
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6 pregunta-zona">
+            
+            <h1>{{ preguntaActual.pregunta }}</h1>
+            <div class="opciones">
+                <button (click)="seleccionarOpcion('a.')">A) {{ preguntaActual['a.'] }}</button><br>
+                <button (click)="seleccionarOpcion('b.')">B) {{ preguntaActual['b.'] }}</button><br>
+                <button (click)="seleccionarOpcion('c.')">C) {{ preguntaActual['c.'] }}</button><br>
+            </div>
+            
+        </div>
+        <div class="col-6">
+            <div class="imagen-zona">
+                <img class="imagen" src="../../../assets/images/B/{{preguntaActual.img}}" alt="Imagen de la pregunta">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+    </div>
+    
+    
+    <div class="navegacion-zona">
+        <button *ngFor="let pregunta of preguntasTest; let i = index" (click)="navegarAPregunta(pregunta)">{{ i + 1 }}</button>    </div>
+</div>

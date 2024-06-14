@@ -1,28 +1,71 @@
-.example-container {
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
-  
-  .example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-  }
-  
-  .example-sidenav {
-    padding: 20px;
-  }
+.sidenav-content{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
-  .icono-flecha{
-    scale: 2;
+  .toggle-button{
+    box-shadow: none;
   }
+}
 
-  .boton-sidenav{
-    width: 200px;
-    height: 70px;
-    font-size: 20px;
-    margin-bottom: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
+.icono-flecha{
+  scale: 2;
+}
+
+.boton-sidenav{
+  width: 200px;
+  height: 70px;
+  font-size: 20px;
+  margin-bottom: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.botonesNav{
+
+  margin-right:10px;
+  margin-top:7px;
+
+  &:hover{
+    cursor: pointer;
   }
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  color: var(--underline-color, #000);
+}
+
+.hover-underline-animation:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--underline-color, #000);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.hover-underline-animation[data-underline-color="white"] {
+  --underline-color: white;
+}
+
+.content-container {
+  flex: 1; /* El contenido principal debe expandirse para ocupar todo el espacio restante */
+  display: flex;
+  flex-direction: column;
+}
+
+.router-outlet-container {
+  flex: 1; /* Ajustar el tamaño del router-outlet para ocupar todo el espacio restante */
+  overflow-y: auto; /* Agregar scroll vertical si el contenido excede el tamaño de la ventana */
+}

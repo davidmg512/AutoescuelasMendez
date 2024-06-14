@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TestServiceService } from '../services/test-service.service';
 import { AuthService } from '../services/auth.service';
 import { FormGroup, FormControl, FormBuilder} from '@angular/forms';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
 
   public testContent: any;
 
@@ -31,10 +31,15 @@ export class HomeComponent {
     })
   }
 
+  ngOnInit(): void {
+      if(localStorage.getItem('logged') == 'S'){
+        this.router.navigate(['/dashboard/main']);
+      }
+  }
+
   loginUser(){
     if(this.authService.login(this.forma.get('correo').value, this.forma.get('password').value)){
       this.router.navigate(['/dashboard/main']);
     }
   }
-
 }

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { dataA1 } from './data_A1.js';
+import { dataB } from './data_B.js';
+import { Test } from '../model/test.js' 
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ export class TestServiceService {
 
   constructor() { }
 
-  private testContent:[] = dataA1;
+  private testContent:Test[] = dataB;
 
   getTestContent(){
     return this.testContent;
