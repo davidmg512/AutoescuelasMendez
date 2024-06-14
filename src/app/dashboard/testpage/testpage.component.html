@@ -2,27 +2,60 @@
 
 <div class="container">
     <div class="row mt-5">
-        <div class="col-6 pregunta-zona">
+        <div class="col-lg-6 col-md-12 pregunta-zona pregunta-zona-mobile">
             
-            <h1>{{ preguntaActual.pregunta }}</h1>
-            <div class="opciones">
-                <button (click)="seleccionarOpcion('a.')">A) {{ preguntaActual['a.'] }}</button><br>
-                <button (click)="seleccionarOpcion('b.')">B) {{ preguntaActual['b.'] }}</button><br>
-                <button (click)="seleccionarOpcion('c.')">C) {{ preguntaActual['c.'] }}</button><br>
+            <p class="pregunta">{{preguntaActualIndex+1}}. {{ preguntaActual.pregunta }}</p>
+            <div class="opciones mt-4">
+                <button class="respuesta" (click)="seleccionarOpcion('a.')">
+                    <div class="circle" [ngClass]="{
+                        'respuesta-correcta': finalizado && isRespuestaCorrecta(preguntaActualIndex, 'a.'),
+                        'respuesta-erronea': finalizado && isRespuestaFallada(preguntaActualIndex, 'a.')
+                    }">A</div>
+                    <span class="textoRespuesta">{{ preguntaActual['a.'] }}</span>
+                </button><br>
+                <button class="respuesta" (click)="seleccionarOpcion('b.')">
+                    <div class="circle" [ngClass]="{
+                        'respuesta-correcta': finalizado && isRespuestaCorrecta(preguntaActualIndex, 'b.'),
+                        'respuesta-erronea': finalizado && isRespuestaFallada(preguntaActualIndex, 'b.')
+                    }">B</div>
+                    <span class="textoRespuesta">{{ preguntaActual['b.'] }}</span>
+                </button><br>
+                <button class="respuesta" (click)="seleccionarOpcion('c.')">
+                    <div class="circle" [ngClass]="{
+                        'respuesta-correcta': finalizado && isRespuestaCorrecta(preguntaActualIndex, 'c.'),
+                        'respuesta-erronea': finalizado && isRespuestaFallada(preguntaActualIndex, 'c.')
+                    }">C</div>
+                    <span class="textoRespuesta">{{ preguntaActual['c.'] }}</span>
+                </button><br>
             </div>
-            
+            <div class="explicacion" *ngIf="finalizado">
+                <p>{{ preguntaActual?.explicacion }}</p>
+            </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-md-12">
             <div class="imagen-zona">
                 <img class="imagen" src="../../../assets/images/B/{{preguntaActual.img}}" alt="Imagen de la pregunta">
             </div>
         </div>
     </div>
-    <div class="row">
-
+    
+    <div class="row navegacion-zona">
+        <div>
+            <button *ngFor="let pregunta of preguntasTest; let i = index"
+            [ngClass]="{'preguntaSeleccionada': preguntaActualIndex === i, 
+            'preguntaRespondida': respuestas[i],
+            'preguntaAcertada': finalizado && isPreguntaRespondida(i) && isRespuestaCorrecta(i, respuestas[i]),
+            'preguntaFallida': finalizado && isPreguntaRespondida(i) && !isRespuestaCorrecta(i, respuestas[i])
+            }"
+            (click)="navegarAPregunta(pregunta, i)">
+                {{ i + 1 }}
+            </button>    
+        </div>
     </div>
-    
-    
-    <div class="navegacion-zona">
-        <button *ngFor="let pregunta of preguntasTest; let i = index" (click)="navegarAPregunta(pregunta)">{{ i + 1 }}</button>    </div>
+
+    <div class="row">
+        <div class="finalizar-zona">
+            <button *ngIf="!finalizado" class="finalizar-boton" (click)="submitTest()">Finalizar Test</button>
+        </div>
+    </div>
 </div>

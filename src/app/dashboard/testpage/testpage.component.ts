@@ -12,6 +12,9 @@ export class TestpageComponent {
   preguntasTest:Test[] = [];
   respuestas: { [key: number]: string } = {};
   preguntaActual: Test | null = null;
+  preguntaActualIndex: number = 0;
+
+  finalizado:boolean = false;
 
   constructor(private testService: TestServiceService){
 
@@ -19,7 +22,6 @@ export class TestpageComponent {
 
   ngOnInit(){
     this.preguntasTest = this.testService.get30RandomQuestion();
-    console.log(this.preguntasTest);
     this.preguntaActual = this.preguntasTest[0];
   }
 
@@ -28,19 +30,40 @@ export class TestpageComponent {
   }
 
   submitTest(): void {
-    // Procesa las respuestas del test
-    console.log(this.respuestas);
-    // Aquí podrías enviar las respuestas al servidor para su evaluación
+    this.finalizado = true;
   }
 
   seleccionarOpcion(opcion: string): void {
-    // Lógica para seleccionar la opción de la pregunta actual
-    // Aquí puedes implementar la lógica según tus necesidades
+    if (this.preguntaActual !== null && !this.finalizado) {
+      this.answerQuestion(this.preguntaActualIndex, opcion);
+      this.navegarAPregunta(this.preguntasTest[this.preguntaActualIndex+1], this.preguntaActualIndex+1);
+    }
   }
 
-  navegarAPregunta(pregunta: Test): void {
-    // Navegar a la pregunta seleccionada
+  navegarAPregunta(pregunta: Test, index: number): void {
     this.preguntaActual = pregunta;
+    this.preguntaActualIndex = index;
   }
 
+  isPreguntaRespondida(index: number): boolean {
+    return this.respuestas.hasOwnProperty(index);
+  }
+
+  isRespuestaCorrecta(index: number, opcion: string): boolean {
+    const respuestaCorrecta = this.preguntasTest[index].correcta.split(' ');
+    const opcionIndex = opcion === 'a.' ? 0 : opcion === 'b.' ? 1 : 2;
+    return respuestaCorrecta[opcionIndex] === '1';
+  }
+
+  isRespuestaFallada(index: number, opcion: string): boolean{
+    const respuestaCorrecta = this.preguntasTest[index].correcta.split(' ');
+    const opcionIndex = opcion === 'a.' ? 0 : opcion === 'b.' ? 1 : 2;
+
+    // Verificar si el usuario ha marcado esta opción
+    const respuestaUsuario = this.respuestas[index];
+    const marcadoPorUsuario = respuestaUsuario === opcion;
+
+    // Verificar si la opción es incorrecta y ha sido marcada por el usuario
+    return respuestaCorrecta[opcionIndex] === '0' && marcadoPorUsuario;
+  }
 }

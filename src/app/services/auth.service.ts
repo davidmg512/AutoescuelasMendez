@@ -16,7 +16,7 @@ export class AuthService {
   constructor() 
   {
     const storedUser = localStorage.getItem(this.USER_KEY);
-    this.usuario = storedUser ? JSON.parse(storedUser) : null;
+    this.usuario = storedUser ? this.decryptData(storedUser) : null;
   }
 
   register(user: any): void {
