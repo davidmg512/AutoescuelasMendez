@@ -6,21 +6,24 @@
       mode="push"   
       >
     <mat-toolbar color="primary">
-      <mat-icon>account_circle</mat-icon>Hola, {{usuario.nombre}}
+      <mat-icon>account_circle</mat-icon> &nbsp; {{usuario.nombre}}
       <button class="toggle-button ml-auto" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-toolbar>
     <mat-nav-list>
-      <button mat-raised-button style="margin-top: 20px;" class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
-        <button mat-raised-button class="boton-sidenav" color="primary">Nuevo test</button><br>
+      <div class="botonesSidenav">
+        <button mat-raised-button style="margin-top: 20px;" class="boton-sidenav" color="primary" (click)="drawer.toggle()" routerLink="/dashboard/testPage">Nuevo test</button><br>
+        <button mat-raised-button class="boton-sidenav" (click)="drawer.toggle()" color="primary">Test de errores</button><br>
+        <button mat-raised-button class="boton-sidenav" (click)="drawer.toggle()" color="primary" routerLink="/dashboard/progress">Progreso</button><br>
+        <button mat-raised-button class="boton-sidenav" (click)="drawer.toggle()" color="primary" routerLink="/dashboard/estadisticas">Estadísticas</button><br>
+        <button mat-raised-button class="boton-sidenav" (click)="drawer.toggle()" color="primary" routerLink="/dashboard/acerca-de">Acerca de</button><br>
+      </div>
+        
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="content-container">
-    <mat-toolbar color="primary">
+    <mat-toolbar class="navbarCustom">
       <button class="toggle-button" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>

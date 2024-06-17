@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12 mb-4" style="align-items:center; display:flex; justify-content:center;">
+            <div class="btn-group" role="group" aria-label="Filtros">
+              <button type="button" class="btn" (click)="filtroSeleccionado = 'total'; applyFilter()">Total</button>
+              <button type="button" class="btn" (click)="filtroSeleccionado = 'semanal'; applyFilter()">Semanal</button>
+              <button type="button" class="btn" (click)="filtroSeleccionado = 'mensual'; applyFilter()">Mensual</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <!-- Line Chart -->
+      <div class="col-12 col-md-6 mb-4">
+        <div style="display: block;">
+          <canvas baseChart
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [options]="lineChartOptions"
+                  [type]="lineChartType">
+          </canvas>
+        </div>
+      </div>
+  
+      <!-- Bar Chart -->
+      <div class="col-12 col-md-6 mb-4">
+        <div style="display: block;">
+          <canvas baseChart
+                  [datasets]="barChartData"
+                  [labels]="barChartLabels"
+                  [options]="barChartOptions"
+                  [type]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Análisis de los Tests Realizados</h5>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="info-item">
+                    <div class="info-label">Total de Aciertos:</div>
+                    <div class="info-value">{{ getTotalAciertos() }}</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="info-item">
+                    <div class="info-label">Total de Fallos:</div>
+                    <div class="info-value">{{ getTotalFallos() }}</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="info-item">
+                    <div class="info-label">Promedio de Aciertos:</div>
+                    <div class="info-value">{{ getPromedioAciertos().toFixed(2) }}</div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="info-item">
+                    <div class="info-label">Promedio de Fallos:</div>
+                    <div class="info-value">{{ getPromedioFallos().toFixed(2) }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  

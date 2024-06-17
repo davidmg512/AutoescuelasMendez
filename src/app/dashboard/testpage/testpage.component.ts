@@ -15,6 +15,8 @@ export class TestpageComponent {
   preguntaActualIndex: number = 0;
 
   finalizado:boolean = false;
+  aciertos: number = 0;
+  errores: number = 0;
 
   constructor(private testService: TestServiceService){
 
@@ -31,6 +33,23 @@ export class TestpageComponent {
 
   submitTest(): void {
     this.finalizado = true;
+    this.calcularResultados();
+    this.testService.guardarTestRealizado(this.aciertos, this.errores);
+  }
+
+  calcularResultados(): void {
+    this.aciertos = 0;
+    this.errores = 0;
+    for (let i = 0; i < this.preguntasTest.length; i++) {
+      const respuestaUsuario = this.respuestas[i];
+      if (respuestaUsuario) {
+        if (this.isRespuestaCorrecta(i, respuestaUsuario)) {
+          this.aciertos++;
+        } else {
+          this.errores++;
+        }
+      }
+    }
   }
 
   seleccionarOpcion(opcion: string): void {
@@ -65,5 +84,16 @@ export class TestpageComponent {
 
     // Verificar si la opción es incorrecta y ha sido marcada por el usuario
     return respuestaCorrecta[opcionIndex] === '0' && marcadoPorUsuario;
+  }
+
+  isRespuestaMarcada(index: number, opcion: string): boolean{
+    const respuestaCorrecta = this.preguntasTest[index].correcta.split(' ');
+    const opcionIndex = opcion === 'a.' ? 0 : opcion === 'b.' ? 1 : 2;
+
+    // Verificar si el usuario ha marcado esta opción
+    const respuestaUsuario = this.respuestas[index];
+    const marcadoPorUsuario = respuestaUsuario === opcion;
+
+    return marcadoPorUsuario;
   }
 }

@@ -14,11 +14,23 @@
 
 .boton-sidenav{
   width: 200px;
-  height: 70px;
+  height: 30%;
   font-size: 20px;
-  margin-bottom: 30px;
   margin-left: 20px;
   margin-right: 20px;
+}
+
+mat-nav-list{
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+}
+
+.botonesSidenav{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .botonesNav{
@@ -29,6 +41,22 @@
   &:hover{
     cursor: pointer;
   }
+}
+
+.navbarCustom{
+  background: linear-gradient(to right, #7b2cbf, #4c6ef5);
+
+
+
+
+
+
+
+
+
+
+
+  color: white;
 }
 
 .hover-underline-animation {

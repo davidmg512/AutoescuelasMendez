@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col container-slider">
+            <span>Recientes</span>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider" (click)="ordenarPorFecha()"></span>
+            </label>
+            <span>Antiguos</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let test of testsRealizados">
+        <div class="card">
+            <div class="card-body">
+            <h4 class="card-title">{{ test.fecha | date:'short' }}</h4>
+            <div class="aciertos">
+                <span class="label">Aciertos:</span>
+                <span class="valor valor-acertado">{{ test.aciertos }}</span>
+            </div>
+            <div class="fallos">
+                <span class="label">Fallos:</span>
+                <span class="valor valor-fallado">{{ test.fallos }}</span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,11 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { ProgressComponent } from './dashboard/progress/progress.component';
+import { EstadisticasComponent } from './dashboard/estadisticas/estadisticas.component';
+import { BaseChartDirective } from 'ng2-charts';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { AcercaDeComponent } from './dashboard/acerca-de/acerca-de.component';
 
 
 @NgModule({
@@ -18,17 +23,22 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AppComponent,
     HomeComponent,
     AboutComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProgressComponent,
+    EstadisticasComponent,
+    AcercaDeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DashboardModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BaseChartDirective
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables())
   ],
   bootstrap: [AppComponent]
 })
