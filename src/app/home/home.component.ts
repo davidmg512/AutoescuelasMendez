@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit{
 
   public testContent: any;
+  public loginError: boolean = false;
 
   forma: FormGroup = new FormGroup({
     correo: new FormControl(''),
@@ -40,6 +41,13 @@ export class HomeComponent implements OnInit{
   loginUser(){
     if(this.authService.login(this.forma.get('correo').value, this.forma.get('password').value)){
       this.router.navigate(['/dashboard/main']);
+    }else{
+      this.loginError = true;
     }
+  }
+
+  loginInvitado(){
+    localStorage.setItem('logged', 'S'); // Almacenar estado de invitado
+    this.router.navigate(['/dashboard/main']);
   }
 }

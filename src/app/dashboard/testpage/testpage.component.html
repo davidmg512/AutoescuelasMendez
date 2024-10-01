@@ -5,7 +5,7 @@
         <div class="col-lg-6 col-md-12 pregunta-zona pregunta-zona-mobile">
             
             <p class="pregunta">{{preguntaActualIndex+1}}. {{ preguntaActual.pregunta }}</p>
-            <div class="opciones mt-4">
+            <div class="opciones">
                 <button class="respuesta" (click)="seleccionarOpcion('a.')">
                     <div class="circle" [ngClass]="{
                         'respuesta-marcada': !finalizado && isRespuestaMarcada(preguntaActualIndex, 'a.'),
@@ -53,7 +53,7 @@
     </div>
     
     <div class="row navegacion-zona">
-        <div>
+        <div class="text-center align-items:center">
             <button *ngFor="let pregunta of preguntasTest; let i = index"
             [ngClass]="{'preguntaSeleccionada': preguntaActualIndex === i, 
             'preguntaRespondida': respuestas[i],

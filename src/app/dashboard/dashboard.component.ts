@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Usuario } from '../model/usuario';
 
 @Component({
   selector: 'app-dashboard',
@@ -29,7 +30,11 @@ export class DashboardComponent implements OnInit{
   }
 
   get usuario() {
-    return this.authService.usuario;
+    if(this.authService.usuario == null){
+      return "Invitado";
+    }else{
+      return this.authService.usuario.nombre;
+    }
   }
 
   rotate() {

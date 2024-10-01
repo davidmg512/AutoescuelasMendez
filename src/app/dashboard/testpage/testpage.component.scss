@@ -8,8 +8,22 @@
     padding-top:60px;
     padding-left:50px;
   }
+
+  .pregunta{
+    font-size: 25px;
+    line-height: 1.3;
+    flex-grow: 1; /* Permite que el texto ocupe espacio disponible */
+    min-height: 120px; /* Tamaño mínimo para las preguntas */
+    max-height: 200px; /* Tamaño máximo si la pregunta es muy larga */
+    overflow-y: auto; /* Habilita scroll en preguntas largas */
+  }
   
   @media (max-width: 767.98px) {
+
+    .container{
+      margin-bottom: 100px;
+    }
+
     .pregunta-zona-mobile {
         padding-top: 0 !important;
         padding-left:30px;
@@ -19,6 +33,8 @@
     
     .pregunta{
       font-size:20px !important;
+      min-height: 0px; /* Tamaño mínimo para las preguntas */
+      margin-bottom: 20px;
     }
 
     .navegacion-zona{
@@ -33,11 +49,11 @@
       margin-top:0px !important;
       display: flex;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 100px;
     }
 
     .finalizar-boton{
-      margin-right:0 !important;;
+      margin-right:0 !important;
     }
 
     .navegacion-zona{
@@ -47,21 +63,31 @@
 
     .calificacion-zona{
       margin-top:0 !important;
+      margin-bottom: 100px;
+    }
+
+    .botonesMovimiento{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: white; /* Para dar un fondo visible */
+      padding: 10px 0; /* Para separar los botones del borde */
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Añade sombra para resaltar la barra de navegación */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000; /* Asegura que esté siempre encima */ 
     }
   }
-
-  .pregunta{
-    font-size: 25px;
-    line-height: 1.3;
-  }
-
-  
+ 
 
   .imagen-zona {
     flex: 1;
     display: flex;
     justify-content: flex-end;
     padding: 20px;
+    max-height: 450px;
   }
   
   .imagen-zona img {
